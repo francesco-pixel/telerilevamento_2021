@@ -6,6 +6,7 @@ setwd("C:/lab/")
 library(raster)
 
 p224r63_2011 <- brick("p224r63_2011_masked.grd")
+# Attraverso la funzione brick ho importato l'intera immagine! 
 
 plot(p224r63_2011)
 # ho fatto il primo plot con dei dati satellitari!!
