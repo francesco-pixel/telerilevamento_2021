@@ -13,3 +13,11 @@ p224r63_2011
 
 plot(p224r63_2011)
 # ho fatto il primo plot con sette bande con dei dati satellitari!!
+
+#stabiliamo adesso un differente range di colori sa nero a grigio chiaro, inserendo una C davanti alla parentesi ad indicare una serie di elementi (colori). il 100 indica il  numero di livelli
+cl <- colorRampPalette(c('black','grey','light grey'))(100)
+
+# plotto il colore con il primo argomento che è l'immagine mentre il secondo argimento sara il colore che daremo ad ogni singola banda
+plot(p224r63_2011, col=cl)
+
+#vediamo che nell'infrarosso c'è molta riflettanza. 
