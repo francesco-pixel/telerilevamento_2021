@@ -21,3 +21,8 @@ cl <- colorRampPalette(c('black','grey','light grey'))(100)
 plot(p224r63_2011, col=cl)
 
 #vediamo che nell'infrarosso c'è molta riflettanza. 
+
+#provo ad osservare la riflettanza con diversi colori:
+cl <- colorRampPalette(c('yellow','grey','pink'))(100)
+
+plot(p224r63_2011, col=cl)
