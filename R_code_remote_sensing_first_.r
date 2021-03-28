@@ -6,7 +6,7 @@ setwd("C:/lab/")
 library(raster)
 
 p224r63_2011 <- brick("p224r63_2011_masked.grd")
-# Attraverso la funzione brick ho importato l'intera immagine! 
+# Attraverso la funzione brick ho importato l'intera immagine! (immagine p224 ovverso stiamo seguendo il percorso sinusoide p224, incrociandolo con la riga 63, così troveremo l'immagine landsat di interesse---> parakana)
 
 p224r63_2011 
 # successivamento digitando il nome dell'immagine ho visualizzato tutte le sue informazioni (tipo di file, risoluzione, informazioni sui sistemi di riferimento etc)
