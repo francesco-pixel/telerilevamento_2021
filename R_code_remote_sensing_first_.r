@@ -26,3 +26,5 @@ plot(p224r63_2011, col=cl)
 cl <- colorRampPalette(c('yellow','grey','pink','white','green','red','orange','blue'))(100)
 
 plot(p224r63_2011, col=cl)
+
+#le analisi multitemporali sia geologiche che non...sono molto interessanti! cosa succede in varie aree del mondo nel tempo?----> https://earthobservatory.nasa.gov/
