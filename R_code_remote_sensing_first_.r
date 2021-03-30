@@ -61,4 +61,5 @@ plot(p224r63_2011$B1_sre, col=cl)
 # utilizzero la funzione par che serve per effettuare un settaggio dei parametri grafici di un grafico che voglio creare.
 #faremo un multiframe MF (immagine accanto ad un altra) in una riga e due colonne tramite la funzione par utilizzando il vettore c o array in righe e colonne
 par(mfrow=c(1,2)) #una riga e una colonna
-par(mfrow=c(2,1)) #due righe e una colonna
+plot(p224r63_2011$B1_sre)
+plot(p224r63_2011$B2_sre)
