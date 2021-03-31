@@ -60,6 +60,38 @@ plot(p224r63_2011$B1_sre, col=cl)
 
 # utilizzero la funzione par che serve per effettuare un settaggio dei parametri grafici di un grafico che voglio creare.
 #faremo un multiframe MF (immagine accanto ad un altra) in una riga e due colonne tramite la funzione par utilizzando il vettore c o array in righe e colonne
-par(mfrow=c(2,1)) #due righe e una colonna, cosi utilizziamo bene lo spazio, è possibile metterle anche su una riga e due colonne.
+par(mfrow=c(2,1)) #due righe e una colonna, cosi utilizziamo bene lo spazio, è possibile metterle anche su una riga e due colonne. se mettiamo col al posto di frow mettendo prima il numero di colonne.
 plot(p224r63_2011$B1_sre)
 plot(p224r63_2011$B2_sre)
+
+ # plot di 4 righe e 1 colonna:
+
+par(mfrow=c(4,1))
+plot(p224r63_2011$B1_sre)
+plot(p224r63_2011$B2_sre)
+plot(p224r63_2011$B3_sre)
+plot(p224r63_2011$B4_sre)
+#impostiamo le bande con 2 righe e 2 colonne
+par(mfrow=c(2,2))
+plot(p224r63_2011$B1_sre)
+plot(p224r63_2011$B2_sre)
+plot(p224r63_2011$B3_sre)
+plot(p224r63_2011$B4_sre)
+
+# facciamo una prima color.palette per il blue e poi plotto la mia immagine con la c.palette che ho inventato per il blue
+par(mfrow=c(2,2))
+clb <- colorRampPalette(c('darkblue','blue','light blue'))(100)
+plot(p224r63_2011$B1_sre, col=clb)
+
+#aggiungiamo quella del verde
+clg <- colorRampPalette(c('darkgreen','green','light green'))(100)
+plot(p224r63_2011$B2_sre, col=clg)
+#adesso aggiungo la banda del rosso
+clr <- colorRampPalette(c('darkred','red','pink'))(100)
+plot(p224r63_2011$B3_sre, col=clr)
+
+#aggiungo la banda dell'infrarosso
+clnir <- colorRampPalette(c('red','orange','yellow'))(100)
+plot(p224r63_2011$B4_sre, col=clnir)
+
+
