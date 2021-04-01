@@ -94,4 +94,31 @@ plot(p224r63_2011$B3_sre, col=clr)
 clnir <- colorRampPalette(c('red','orange','yellow'))(100)
 plot(p224r63_2011$B4_sre, col=clnir)
 
+#con la funzione par è possibile plottare più immagini insieme (es.plottaccio ghiacciai, vegetazione, diversità ecc)
+
+DAY4 
+
+
+# adesso lavorerò e capirò cosa è un plotter in RGB
+#seleziono la cartella di riferimento lab
+
+setwd("C:/lab/") #windows
+# install.packages("raster")
+library(raster)
+#importo i dati con la funzione brick
+p224r63_2011 <- brick("p224r63_2011_masked.grd")
+# BANDE LANDSAT
+
+# B1: blu
+# B2: verde
+# B3: rosso
+# B4: infrarosso vicino
+# B5: infrarosso medio
+# B6: infrarosso termico
+# B7: infrarosso medio
+
+#uno schema RGB: ogni display utilizza questi 3 colori principali reed green blue. 
+#RGB ci permette di associare solo 3 bande  su 7---> questo schema ci permette di vedere come se avessimo solamente colori naturali.
+# Poi plotto in RGB, associamoo ogni singola banda ad una componente dello schema RGB
+# Poi utilizzo l'argomento stretch, prendendo la riflettanza delle singole bande e le stiriamo in modo tale che non vi sia schiacciamento verso una sola parte del colore.
 
