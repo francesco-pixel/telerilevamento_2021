@@ -153,6 +153,45 @@ dev.off()
 plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="Lin")
 plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="hist") 
 
-#pssiamo fare un parmfrow 
-par(mfrow=c(3,1
+#possiamo fare un parmfrow , siamo partiti da un immagine di come lo vedrebbe l'occhio umano fino ad arrivare ad un immagine con uno strech per histogrammi che individua tutte le differenti componenti all'interno della foresta in modomvia via piu dettagliato. I colori vengono fuori dai livelli sovrapposti (colori effettivi).
+par(mfrow=c(3,1))
+plotRGB(p224r63_2011, r=3, g=2, b=1, stretch="Lin")
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="Lin")
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="hist")
 
+#day 5 Analisi delle componenti principali, Rstoolbox
+#ho un valore elevato sulla componente rossa, intermedio sulla componente blu e basso sulla componente verde. quindi il colore non lo decidiamo noi ma il softwewre in funzione delle bande che abbiamo montato in RGB.
+#il colore della vegetazione cambierà in funzione di questo quindi non siamo piu noi in condizione di fare una leggenda ma in RGB lo stabilirà il softwere.
+#importiamo il file 1988
+
+#set multitemporale
+p224r63_1988 <- brick("p224r63_2011_masked.grd") #importo il mio file del 1988 con un salto temporale, questa è la stessa immagine del 2011 ma presa nel 1988 con valori di pixel differenti. 
+p224r63_1988
+
+#plottiamo l'intera immagine e visualizziamo le singole bande
+plot(p224r63_1988) 
+#associamo a ogni componente dello schema RGB e varie bande e facciamo la funzione plotRGB e usiamo la funzione strech per vedere un'immagine più bella:
+
+# B1: blu
+# B2: verde
+# B3: rosso
+# B4: infrarosso vicino
+# B5: infrarosso medio
+# B6: infrarosso termico
+# B7: infrarosso medio
+
+#plot di colori naturali:
+plotRGB(p224r63_1988, r=3, g=2, b=1, stretch="Lin") #questa è la condizione del 1988
+#Adesso plotto l'infrarosso facendo scattare tutti i numeri di uno:
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
+
+#plottiamo le due immagini, sia quella del 1988 che quella del 2011 per notare le differenze con la funzione par usando sia la funzione lineare che che histogram :
+pdf("secondo_pdf_multitemp.pdf")
+par(mfrow=c(2,2))
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="hist")
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="hist")
+dev.off()
+#si osserva che nel 1988 si ha una soglia graduale di vegetazione ad impatto di cambiamento umano sul territorio, mentre nel 2011 si ha un passaggio netto tra la foresta pluviale e l'impatto umano.
+#poi creiamo un pdf da salvare nella cartella lab
