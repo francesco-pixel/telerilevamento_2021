@@ -185,7 +185,7 @@ plotRGB(p224r63_1988, r=3, g=2, b=1, stretch="Lin") #questa è la condizione del
 #Adesso plotto l'infrarosso facendo scattare tutti i numeri di uno:
 plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
 
-#plottiamo le due immagini, sia quella del 1988 che quella del 2011 per notare le differenze con la funzione par usando sia la funzione lineare che che histogram :
+#plottiamo le due immagini, sia quella del 1988 che quella del 2011 per notare le differenze con la funzione par, usando sia la funzione lineare che che histogram :
 pdf("secondo_pdf_multitemp.pdf")
 par(mfrow=c(2,2))
 plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
@@ -195,3 +195,7 @@ plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="hist")
 dev.off()
 #si osserva che nel 1988 si ha una soglia graduale di vegetazione ad impatto di cambiamento umano sul territorio, mentre nel 2011 si ha un passaggio netto tra la foresta pluviale e l'impatto umano.
 #poi creiamo un pdf da salvare nella cartella lab
+
+#nota: la funzione pdftk prende tutti i pdf nella cartella e li unisce in un unico file di output
+
+#Adesso abbandoniamo il lavoro sulla foresta tropicale e passiamo a lavorare in un altro archivio in Groenlandia. Fine del codice.
