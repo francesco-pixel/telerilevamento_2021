@@ -121,4 +121,38 @@ p224r63_2011 <- brick("p224r63_2011_masked.grd")
 #RGB ci permette di associare solo 3 bande  su 7---> questo schema ci permette di vedere come se avessimo solamente colori naturali.
 # Poi plotto in RGB, associamoo ogni singola banda ad una componente dello schema RGB
 # Poi utilizzo l'argomento stretch, prendendo la riflettanza delle singole bande e le stiriamo in modo tale che non vi sia schiacciamento verso una sola parte del colore.
+#ricordiamo la riflettanza: rapporto energia riflessa su energia totale. va da 0 a 1 applicando uno strecth lineare.
+
+
+#schema RGB in colori naturali, immagine a colori naturali. Usiamo il numero del layer perchè chi ha pensato il comando ha utilizzato i numeri invece del nome delle bande.
+plotRGB(p224r63_2011, r=3, g=2, b=1, stretch="Lin") 
+
+#Adesso utilizziamo gli altri colori, togliamo la banda del blu e facciamo uno scatto di 1. si ha la banda n.4 dell'infrarosso che è la piu riflettente montandolo sulla componente red RGB:
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
+# Quindi le nostre percezioni dipendono dai nostri sensori. La vegetazione risulta essere rossa perche abbiamo montato l'infrarosso nel red e la vegetazione nel rosso aveva un'altissima riflettanza. (vale anche per i minerali)
+#vediamo cosa succede se spostiamo la banda dell'infrarosso (ad esempio sulla green):
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="Lin")
+#quindi cambiando la banda vediamo processi ecologici che prima non vedevamo (componente di ombre, campi, H2O ecc)
+#infine montiamo l'infrarosso  (banda 4) nel blu:
+plotRGB(p224r63_2011, r=3, g=2, b=4, stretch="Lin")
+#facciamo par e plottiamo le 4 immagini (multiframe):
+#esercizio
+pdf("primo_pdf_con_R.pdf")
+par(mfrow=c(2,2))
+plotRGB(p224r63_2011, r=3, g=2, b=1, stretch="Lin") 
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="Lin")
+plotRGB(p224r63_2011, r=3, g=2, b=4, stretch="Lin")
+dev.off()
+#quindi abbiamo aperto un pannello vuoto 2 riche per 2 colonne e inserito le 4 immagini. usando i colori naturali gran parte delle sfumature del paesaggio vengono perse, per vederle dobbiamp utilizzare l'infrarosso vicino.
+#è possibile vedere le sorgenti con questo metofo nel telerilevamento?
+#funzione per fare un pdf dalla nostra immagine:
+#pdf("primo_pdf.pdf")
+
+#finora abbiamo fatto uno stretch lineare ma si puo fare anche curvilineo hisogram strech e grazie all'immagine ricavata riusciamo a vedere all'interno della foresta e aree piu umide e differenziarle e grazie all'immagine satellitare possimo evidenziare alcune cose che ad occhio nudo non potremmo:
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="Lin")
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="hist") 
+
+#pssiamo fare un parmfrow 
+par(mfrow=c(3,1
 
