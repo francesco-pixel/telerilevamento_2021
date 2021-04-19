@@ -46,8 +46,25 @@ plot(lst_2015)
 
 rlist <- list.files(pattern="lst") #list file crea una lista
 rlist #lista di tutti i file che hanno al loro interno la parola lst in comune
+#pattern è la scritta che hanno in comu e i file
 import <- lapply(rlist,raster) #li importo tramite lapply
 import
 
-#sostanzialmete 
+#dopo aver importato la lista dentro R quindi abbiamo i singoli file e a questo punto possiamo raggruppare tutti i file insieme e gli diamo un nome tramite la funzione stack:
+#stack mi passa dai singoli file che io ho importato ad un unico grande file, per fare delle operazioni di plottaggio contemporaneamente
+TGr <- stack(import)
+plot(TGr)
+
+#quindi abbiamo i vari livelli separati e abbiamo creato le condizioni di un immagine a tante bande
+
+#sovrapposizione di immagini tutte insieme:
+plotRGB(TGr, 1, 2, 3, stretch="Lin")
+
+plotRGB(TGr, 2, 3, 4, stretch="Lin") 
+plotRGB(TGr, 4, 3, 2, stretch="Lin") 
+#plot rgb con dei valori di immagine da satellite sovrapposte che riguardano la temperatura
+
+#DAY
+
+
 
