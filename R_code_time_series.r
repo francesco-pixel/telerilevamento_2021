@@ -5,8 +5,14 @@
 
 setwd("C:/lab/greenland") # Windows
 library(raster)
+
+
+
 #utilizziamo la working directory greenland
-# install.packages("raster")
+# install.packages("rasterVis")
+install.packages("rasterVis")
+library(rasterVis)
+#rastervis è un metodo di visualizzazione per i dati raster
 
 #stack: insieme di dati multitemporali, in questo caso raster.
 
@@ -67,4 +73,25 @@ plotRGB(TGr, 4, 3, 2, stretch="Lin")
 #DAY
 
 
+#Con la funzione levelplot usiamo il blocco intero e una singola legenda e plottiamo tutto insieme. la useremo con i dati di Copernicus
+levelplot(TGr)
+
+levelplot(TGr$lst_2000)
+#immagine a 16 bit, vediamo i valori di T medi di ogni colonna, unendo i punti di ogni colonna vedremo che dove abbiamo il ghiaccio avremo dati più bassi.
+#in questo caso stiamo utilizzando delle immagini singole quindi possiamo utilizzare la color palette a differenza di immagini RGB
+cl <- colorRampPalette(c("blue","light blue","pink","red"))(100) 
+#possiamo cambiare i colori e riplottiamo il levelplot e con l'argomento col.regions (argomento per cambiare colore)
+levelplot(TGr, col.regions=cl) #abbiamo fatto un plot con nuovi colori e vediamo in modo multitemporale come varia la Temperatura dal 2000 al 2015, la gamma di colori si vede bene.
+
+#adesso cambiamo il level plot nominando in modo diverso gli attributi
+levelplot(TGr,col.regions=cl, names.attr=c("July 2000","July 2005", "July 2010", "July 2015")) #abbiamo ridenominato i layer 
+# adesso gli diamo un nome e otteniamo il grafico finale
+levelplot(TGr,col.regions=cl, main="LST variation in time",
+          names.attr=c("July 2000","July 2005", "July 2010", "July 2015"))
+
+#adesso utilizziamo i dati sullo scioglimento
+
+#il ghiaccio non assorbe me microonde quindi in funzione di quanto ghiaccio c'è possiamo fare una stima sulla quantita di ghiaccio persa in groenlandia dal 1978
+
+#melt
 
