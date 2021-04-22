@@ -71,7 +71,14 @@ plotRGB(TGr, 4, 3, 2, stretch="Lin")
 #plot rgb con dei valori di immagine da satellite sovrapposte che riguardano la temperatura
 
 #DAY
+library(rasterVis)
 
+setwd("C:/lab/greenland") # Windows
+rlist <- list.files(pattern="lst") #list file crea una lista
+rlist
+import <- lapply(rlist,raster) #li importo tramite lapply
+import
+TGr <- stack(import)
 
 #Con la funzione levelplot usiamo il blocco intero e una singola legenda e plottiamo tutto insieme. la useremo con i dati di Copernicus
 levelplot(TGr)
@@ -91,7 +98,35 @@ levelplot(TGr,col.regions=cl, main="LST variation in time",
 
 #adesso utilizziamo i dati sullo scioglimento
 
-#il ghiaccio non assorbe me microonde quindi in funzione di quanto ghiaccio c'è possiamo fare una stima sulla quantita di ghiaccio persa in groenlandia dal 1978
+#il ghiaccio non assorbe me microonde quindi in funzione di quanto ghiaccio c'è possiamo fare una stima sulla quantita di ghiaccio persa in groenlandia dal 1978 ad oggi
 
-#melt
+#melt, scarichiamo i dati,  e facciamo una lista meltlist e applichiamo la funzione lapply alla lista fatta e applichiamo la funzione raster.
+
+meltlist <- list.files(pattern="melt")
+#applico alla lista che ho appena nominato (meltlist) la mia funzione raster:
+melt_import <- lapply(meltlist,raster)
+#infine facciamo lo stack raggruppando tutti i file che ho appena importato e li metto insieme con la funzione stack:
+melt <- stack(melt_import)
+melt
+#abbiamo fatto un rasterstack
+#adesso faccio il levelplot con i dati melte ottengo i valori di scioglimento dei ghiacci, piu alti sono i valori maggiore è lo scioglimento.
+#fra il primo anno e l'ultimo si vede una bella differenza 
+#adesso facciamo algebra applicata a delle matrici, possiamo fare una sottrazione tra le due immagini e notare le differenze.
+
+#sottrazione tra primo dato e secondo, gli assegnamo un nome:
+#questi due file sono dentro il file piu grande melt quindi dobbiamo legarli tramite $
+melt_amount <- melt$X2007annual_melt - melt$X1979annual_melt
+#faccio la color e palette dove avro valori piu bassi in blu e in rosso i piu alti
+clb <- colorRampPalette(c("blue","white","red"))(100)
+#plottiamo e vediamo le differenze tra i due anni
+plot(melt_amount, col=clb)
+
+levelplot(melt_amount, col.regions=clb)
+#vediamo un'impressione generale e vediamo un picco di melt. Abbiamo visto come utilizzare e visualizzare i dati di differenza tra le due immagini.
+
+
+#DAY
+
+#installo il pacchetto knitr
+
 
