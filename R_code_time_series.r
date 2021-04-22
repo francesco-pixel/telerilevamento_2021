@@ -126,7 +126,9 @@ levelplot(melt_amount, col.regions=clb)
 
 
 #DAY
-
+#USGS sito dove scaricare tutti i dati
 #installo il pacchetto knitr
+
+install.packages("knitr")
 
 
