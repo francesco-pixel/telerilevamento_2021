@@ -125,7 +125,9 @@ levelplot(melt_amount, col.regions=clb)
 #vediamo un'impressione generale e vediamo un picco di melt. Abbiamo visto come utilizzare e visualizzare i dati di differenza tra le due immagini.
 
 
-#DAY
+#DAY 14/04
+#copernicus e dataset anche per l'esame: dati vegetazione,energia, ciclo dell'acqua (temperatura, water level ecc), Criosphere(estensione ghiaccio ecc)
+#metadato: descrizione dato che andiamo ad utilizzare
 #USGS sito dove scaricare tutti i dati
 #installo il pacchetto knitr
 
