@@ -31,7 +31,7 @@ albedores
 plot(albedores)
 #noto come la variabile sia più veloce da visualizzare
 
-#Data la variabile molto pesante, adesso la ricampioniamo  per un fattore 100 diminuendo la dimensione di 1000 volte e rifaccio il plot di albedores:
+#Data la variabile molto pesante, adesso la ricampioniamo  per un fattore 100 diminuendo la dimensione di 10000 volte il dato originale (100x100) e rifaccio il plot di albedores:
 #ricampionamento bilineare:
 
 albedores <- aggregate(albedo, fact=100)
@@ -40,7 +40,4 @@ plot(albedores, col=cl)
 
 
 
-ext <- c(6, 20, 35, 50)
-testc <- crop(test, ext)
-plot(testc)
 
