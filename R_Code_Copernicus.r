@@ -38,6 +38,10 @@ albedores <- aggregate(albedo, fact=100)
 plot(albedores, col=cl)
 
 
+#day 16/04
+generiamo il codice che utilizzeremo dentro knitr 
+
+
 
 
 
