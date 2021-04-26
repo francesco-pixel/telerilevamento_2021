@@ -9,9 +9,18 @@ generiamo il codice che utilizzeremo dentro knitr
 install.packages("knitr")
 library("knitr")
 
+#dopo aver salvato il codice nella cartella lab, da R usiamo il pacchetto knitr che pesca il codice nella cartella lab che va a caricare dentro R generando il report
+
+#la funzione che useremo sarà:
+stitch("R_Code_Greenland.r.txt", template=system.file("misc", "knitr-template.Rnw", package="knitr"))
+#vedremo la generazione del report
+#oltre aver generato il report, vengono generate le figure che mette dentro la cartella figure in lab
 
 
+#un compilatore è un softwere come R che usa il codice per generare del testo
+#registrazione a overlife, strumento potente per usare codice latex all'interno.
 
-
-require(knitr)
-stitch("~/Downloads/R_code_temp.r", template=system.file("misc", "knitr-template.Rnw", package="knitr"))
+#primp progetto da tex
+#ricompila: serve a passare dal file tex al pdf
+#adesso copiamo e incolliamo tutto cio che è salvato nel file tex e lo copiamo dentro
+#includegraphics: funzione che prende le figure e le inserisce all'interno, prendendole dentro la cartella  figure
