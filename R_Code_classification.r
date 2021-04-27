@@ -117,6 +117,14 @@ plot(gcc4$map)
 
 #dopo aver fatto la classificazione vediamo sul campo quanto l'immagine possa essere utilizzata. se usassimo anche la banda dell'infrarosso vedremo l'H2O in una sola classe a parte.
 
+#quindi capire sul campo perche son venuti fuori diversi valori di riflettanza e le cause 
+#articolo mineralogical mapping
+
+
+
+
+
+
 
     
 # R_code_multivariate_analysis.r
