@@ -24,3 +24,10 @@ stitch("R_Code_Greenland.r.txt", template=system.file("misc", "knitr-template.Rn
 #ricompila: serve a passare dal file tex al pdf
 #adesso copiamo e incolliamo tutto cio che è salvato nel file tex e lo copiamo dentro
 #includegraphics: funzione che prende le figure e le inserisce all'interno, prendendole dentro la cartella  figure
+
+
+#day 21/04
+
+#Classificazione delle immagini: processo che accorpa pixel on valori simili rappresentando una classe (bosco, vegetazione,prateria, specie simili)
+#studieremo il grand canyon , diverse rocce.
+#Solar obiter: monitora il sole (sensori basati su raggi ultravioletti)
