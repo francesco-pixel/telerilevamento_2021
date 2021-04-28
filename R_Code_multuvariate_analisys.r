@@ -31,6 +31,7 @@ pairs(p224r63_2011)
 #è possibile osservare ciò che si correla al meglio, vengono cosi messe in relazione a due a due tutte le variabili, le variabili sono le bande.
 #sulla parte alte della nostra matrice si osserva l'indice della bicorrelazione di pearson varia tra -1 e 1. se siamo ben correlati l'indice si aggira ad 1 viceversa va a -1
 #notiamo che queste bande il molti casi sono ben correlate tra di loro
+#quindi possiamo usare l'analisi multivariate per compattare il nostro sistema in un numero differenti di bande conservando la stessa informazione.
 
 
  
