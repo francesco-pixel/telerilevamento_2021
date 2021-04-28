@@ -127,29 +127,7 @@ plot(gcc4$map)
 
 
     
-# R_code_multivariate_analysis.r
 
-
-
-
-
-
-setwd("C:/lab/") # Windows
- 
-
-
-
-
-
-p224r63_2011_masked.grd
-
-
-p224r63_2011
- 
-plot(p224r63_2011$B1_sre, p224r63_2011$B2_sre, col="red", pch=19, cex=2)
- 
-pairs(p224r63_2011)
- 
 
  
 
