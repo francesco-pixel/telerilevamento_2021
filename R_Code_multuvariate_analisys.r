@@ -1,3 +1,5 @@
+#DAT 23/04
+
 #sensore atex dove ci sono centinaia di bande e di  icrosensori, possiamo compattare il dataset tramite analisi multivariata e vederlo in due dimensioni.
 
 #Concetto di variabilità di un sistema 
@@ -33,5 +35,20 @@ pairs(p224r63_2011)
 #notiamo che queste bande il molti casi sono ben correlate tra di loro
 #quindi possiamo usare l'analisi multivariate per compattare il nostro sistema in un numero differenti di bande conservando la stessa informazione.
 
+#DAY 28/04
+#la PCA è molto impattante, di conseguenza ricampioniamo il nostro dato rendendolo piu leggero attraverso la funzione aggregate.
+#abbiamo 30 pixel di risoluzione. possiamo aggregare i pixel per un fattore 10 in modo tale da avere un'immagine meno pesante. attualmente 31 mln di pixel.
+#diminuiamo la risulizone tramite aggregate
+#aggreghiamo le celle, ricampionamento:resampling
+p224r63_2011res <- aggregate(p224r63_2011, fact=10) #aggreghiamo di un fattore 10, diminuendo la risolzione da 30m a 300m aumentando la grandezza del pixel diminuiamo la risoluzione
 
+#adesso per vederlo facciamo un pannello con 2 immagini e lo plottiamo
+par(mfrow=c(2,1)
+    
+    
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="lin") 
+plotRGB(p224r63_2011res, r=4, g=3, b=2, stretch="lin") 
+#quella sopra 30x30
+#quella sotto pixel 300x300m #quindi quella ricampionata
+        
  
