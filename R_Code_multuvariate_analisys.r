@@ -75,6 +75,13 @@ p224r63_2011res_pca
 plotRGB(p224r63_2011res_pca$map, r=4, g=3, b=2, stretch="lin") 
 #immagine risultante dall'analisi delle 3 componenti principali
 
+#data cube è un immagine iperspettrale dove abbiamo centinaia di bande a disposizione che sono possibili compattare attraverso la PCA.
+
+funzione str----> ci da molte informazioni sul file 
+#l'analisi multivariata si usa per diminuire un set di variabili che abbiamo a disposizione.
+# vi sono situazioni in cui non possiamo usare variabili correlate  tra loro quindi prendiamo le variabili originali facciamo una PCA e usiamo solo alcune componenti della PCA.
+
+
 
 
 
