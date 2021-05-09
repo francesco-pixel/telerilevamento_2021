@@ -120,3 +120,31 @@ cl <- colorRampPalette(c('blue','white','red'))(100)
 plot(difndvi, col=cld)
 
 #in rosso le aree con maggior perdita di vegetzione
+
+
+#WORLDwIDE NDVI  
+
+install.packages("rasterdiv")
+library(rasterdiv)
+plot(copNDVI)
+#PARTE CHE INDIVIDUA L'ACQUA CHE VOGLIAMO TOGLIERE TRAMITE:
+
+
+## Pixels with values 253, 254 and 255 (water) will be set as NA’s.
+
+#i pixel possono essere trasformati in non valori tramite reclassify che viene da raster. effettuiamo questa trasformazione per i valori 253,255 in NA
+copNDVI <- reclassify(copNDVI, cbind(253:255, NA))
+plot(copNDVI)
+#abbiamo eliminato l'acqua e vediamo la mappa NVDI a scala globale
+
+
+# rasterVis package needed:
+
+library(rasterVis)
+levelplot(copNDVI) #dentro il pacchetto rastervis 
+#valori dal 1999 al 2017, valori bassi in aree desertiche, mentre alti valori in zone in cui vi è neve. (notiamo il respiro della terra).
+#in corrispondenza dell'equatore abbiamo massimi valori perche vi è la massima luce e le piante avranno molto bisogno di luce. a 23 gradi nord ci sono i deserti per via dei moti di convezione delle masse d'aria 
+#all'interno delle foreste tropicali l'evapotraspirazione è elevatissima.
+
+
+
