@@ -119,3 +119,4 @@ p1 <- ggplot(percentages, aes(x=cover, y=percent_1992, color=cover)) + geom_bar(
 p2 <- ggplot(percentages, aes(x=cover, y=percent_2006, color=cover)) + geom_bar(stat="identity", fill="white")
 grid.arrange(p1, p2, nrow=1)
 
+#vediamo il plot con i valori, vediamo le differenze tra il 1992 e il 2006 nello stesso grafico. siamo passati da un immagine satellitare ad un grafico che ci mostra i cambiamenti multitemporali.
