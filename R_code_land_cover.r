@@ -109,4 +109,13 @@ library(ggplot2)
 #p1<-ggplot(output, aes(x=cover, y=before, color=cover)) + geom_bar(stat="identity", fill="white")  
 ggplot(percentages, aes(x=cover, y=percent_1992, color=cover)) + geom_bar(stat="identity", fill="white")
 #geometria a barre #dati originati identity #color: quali oggetti discriminare #fill: di che colore voglio le barre all'interno
+#vediamo nel grafico la parte agricola  molto bassa e foresta molto alta. la legenda = cover
+#facciamo la stessa operazione per il plot del 2006
+ggplot(percentages, aes(x=cover, y=percent_2006, color=cover)) + geom_bar(stat="identity", fill="white")
+
+#le due barre adesso sono simili
+#grid.arrange mette insieme i plot grafici in una pagina, associamo i plot ad un  nome (p1,p2) e poi li plottiamo insieme con grid.arrange
+p1 <- ggplot(percentages, aes(x=cover, y=percent_1992, color=cover)) + geom_bar(stat="identity", fill="white")
+p2 <- ggplot(percentages, aes(x=cover, y=percent_2006, color=cover)) + geom_bar(stat="identity", fill="white")
+grid.arrange(p1, p2, nrow=1)
 
