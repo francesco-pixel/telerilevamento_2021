@@ -1,4 +1,4 @@
-5/01
+5/05
 #R_code_land_cover.r
 
 # R code analisi multitemporale di variazione della land cover
@@ -48,7 +48,7 @@ grid.arrange(p1, p2, nrow=2)
 #utilizzzeremo ggplot per vedere la diminuzione nella foresta amazzonica e la plotteremo visualizzando il cambiamento
 
 
-DAY 7/01
+DAY 7/05
 #differenza tra vegetazione e uso del suolo (copertura). la vegetazione è piu particolareggiata con le singole specie dominanti. 
 #per la vegetaazione abbiamo bisogno di sensori iperspettrali e quindi molte bande per distinguere le specie.
 
