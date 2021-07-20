@@ -48,7 +48,21 @@ ndvimean3 <- focal(ndvi, w=matrix(1/9, nrow=3, ncol=3), fun=mean)
 #cambiamo la color e la plottiamo
 clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100) # 
 plot(ndvimean3, col=clsd) #vediamo l' media dell'ndvi, valori alti nei boschi ecc e valori piu bassi per la roccia
-#aumentiamo la grandezza e quindi la finestra a nostro piacere quindi non piu 3x3 ma la faccio con un 12x12
+#aumentiamo la grandezza e quindi la finestra a nostro piacere quindi non piu 3x3 ma la faccio con un 13x13 e la plotto
 ndvisd13 <- focal(ndvi, w=matrix(1/169, nrow=13, ncol=13), fun=sd)
 clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100) # 
 plot(ndvisd13, col=clsd)
+#la finestra adesso  è molto piu ampia, facciamo un calcolo con una finestra 5x5
+ndvisd5 <- focal(ndvi, w=matrix(1/25, nrow=5, ncol=5), fun=sd)
+clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100) # 
+plot(ndvisd5, col=clsd)
+#finora abbiamo lavorato sull ndvi per la compattazione ma vi è un'altra tecnica.
+#Avremo la pc1 che è la prima componente principale della PCA.  e non nvdi in questo caso, la pc1 è sempre un singolo strato e ci passeremo la movie window come prima fino a creare una mappa di dev standard. 
+#utilizziamo la funzione rasterPCA, e facciamo l'analisi delle componenti principali per i raster che si trova nel pacche RStoolbox e lo chiamiamo sentpca e la associamo alla funzione.
+sentpca <- rasterPCA(sent) 
+plot(sentpca$map)  
+#osserviamo le 4 componenti che ha, via via che si passa da una pca all'altra si perdono informazioni. i layer sono 4 pc1-2-3-4.
+#vediamo quanta variabilita spiegano le singole componenti #summary:
+#la prima componente principale spiega il 67,36 % della proporzione principale
+summary(sentpca$model)
+ #la prima PC spiega il 67,36804 % dell'informazione totale e originale 
