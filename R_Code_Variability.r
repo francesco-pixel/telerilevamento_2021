@@ -17,5 +17,38 @@ plotRGB(sent, r=2, g=1, b=3, stretch="lin")
 #parte rosa calcare, vediamo la parte vegetale in verde florescente, in nero l'acqua e i laghi e ombre.
 #calcoliamo la dev standard e possiamo utilizzare una sola banda su cui passera la movie window (finestra mobile) per fare il calcolo, poi facciamo la media dei pixel.
 #costruiamo la distribuzione a campana di tutte le frequenze, la variabilita è data dal 68 percento dei dati ottenendo la dev standard. maggiore è la variabilita maggiore sara la dev standard.
-#la finestra mobile si spostera e calcoleremo la dev standard dei pixel inclusi, ottengo cosi una nuova mappa con i valori. 
-#in questo caso la finestra mobile passa su una sola banda quindi bisogna compattare 
+#la finestra mobile si spostera e calcoleremo la dev standard dei pixel inclusi, ottengo cosi una nuova mappa con dei valori nuovi calcolati per la dev standard. 
+#in questo caso la finestra mobile passa su una sola banda quindi bisogna compattare tutti i dato in un solo strato
+#un metodo potrebbe essere l'indice di vegetazione ndvi che ci porta ad un singolo layer e otteniamo un valore per ogni pixel.
+nir <- sent$sentinel.1
+red <- sent$sentinel.2
+#associamo le due bande a due oggetti e ora calcoliamo ndvi e gli associamo un nome e lo plottiamo
+ndvi <- (nir-red) / (nir+red)
+
+plot(ndvi)
+#ndvi va da -1 a 1 , dove vediamo bianco non c'è vegetazione e quindi acqua, il marroncino è roccia e non c'è vegetazione, in giallo e verde è il bosco, le parti sommitali in verde sculo è la vegetazione.
+#possiamo cambiare la colorRampalette e la plotto, abbiamo calcolato la vegetazione del singolo strato.
+cl <- colorRampPalette(c('black','white','red','magenta','green'))(100) # 
+
+plot(ndvi,col=cl)
+#ora calcoliamo la variabilità di questa immagine 
+
+#calcoliamo la dev. standard di questa immagine cin la funzione focal, calcolando la statistica (media , dev standard ecc)
+#procediamo con la dev standard
+#focal del dato ndvi, la w=window è uguale alla matrice (abbiamo 9 pixel in questo caso) isotropo. facciamo una dev standard con una finestra mobile di 3 pixel e gli associamo il nome.
+ndvisd3 <- focal(ndvi, w=matrix(1/9, nrow=3, ncol=3), fun=sd)
+plot(ndvisd3)
+#cambiamo la colorampalette, abbiamo calcolato la variabilità con la dev standard dell'immagine e cambiato i colori
+clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100) # 
+plot(ndvisd3, col=clsd)
+#in rosso giallo abbiamo una variabilità piu alta, la dev standard è in alcune parti omogenea nelle parti vegetate (giallo e rosso) mentre in altre zone sarà piu alta e in altre piu bassa. dev standard sull'nvdi.
+# facciamo una media della dev standard 
+# mean ndvi with focal,
+ndvimean3 <- focal(ndvi, w=matrix(1/9, nrow=3, ncol=3), fun=mean)
+#cambiamo la color e la plottiamo
+clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100) # 
+plot(ndvimean3, col=clsd) #vediamo l' media dell'ndvi, valori alti nei boschi ecc e valori piu bassi per la roccia
+#aumentiamo la grandezza e quindi la finestra a nostro piacere quindi non piu 3x3 ma la faccio con un 12x12
+ndvisd13 <- focal(ndvi, w=matrix(1/169, nrow=13, ncol=13), fun=sd)
+clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100) # 
+plot(ndvisd13, col=clsd)
