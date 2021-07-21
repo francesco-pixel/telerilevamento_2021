@@ -1,3 +1,4 @@
+#DAY 19/05
 #R_Code_Variability.r
 library(raster)
 library(RStoolbox)
@@ -72,6 +73,9 @@ summary(sentpca$model)
  #la prima PC spiega il 67,36804 % dell'informazione totale e originale 
 #la nostra immagine sentpca la leghiamo a map con il dollero ed essa cconterra 4 variabili, noi prenderemoo la PC questo lo associamo ad un ogetto cche si chiama PC1 e aplichiama la funzione focal a PC1
 
+
+
+DAY 21/05
 #e useremo questo oggetto PC1 per applicare focal
 pc1 <- sentpca$map$PC1
 #facciamo la dev standard tramite focal sulla PC1 usando direttamente una griglia 5x5 e cambiamo la colorampalette, poi plottiamo
