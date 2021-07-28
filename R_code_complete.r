@@ -10,7 +10,7 @@
 #5. R code multivariate analysis
 #6. R code classification
 #7. R code ggplot2
-
+#8.
 
 #1. Remote sensing first code 
 #------------------------------------------------------------------
@@ -678,5 +678,21 @@ plot(gcc4$map)
 #-------------------------------------------------------------------------------
 #7. R code ggplot2
 
+library(raster)
+library(RStoolbox)
+library(ggplot2)
+library(gridExtra)
 
+setwd("~/lab/")
+
+p224r63 <- brick("p224r63_2011_masked.grd")
+
+ggRGB(p224r63,3,2,1, stretch="lin")
+ggRGB(p224r63,4,3,2, stretch="lin")
+
+p1 <- ggRGB(p224r63,3,2,1, stretch="lin")
+p2 <- ggRGB(p224r63,4,3,2, stretch="lin")
+
+grid.arrange(p1, p2, nrow = 2) # this needs gridExtra
+#-------------------------------------------------------------------------------
 
