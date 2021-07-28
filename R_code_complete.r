@@ -29,7 +29,7 @@ library(raster)
 #importo i dati con la funzione brick
 
 p224r63_2011 <- brick("p224r63_2011_masked.grd")
-# Attraverso la funzione brick ho importato l'intera immagine! (immagine p224 ovverso stiamo seguendo il percorso sinusoide p224, incrociandolo con la riga 63, così troveremo l'immagine landsat di interesse---> parakana)
+# Attraverso la funzione brick ho importato l'intera immagine! (immagine p224 ovvero stiamo seguendo il percorso sinusoide p224, incrociandolo con la riga 63, così troveremo l'immagine landsat di interesse---> parakana)
 
 p224r63_2011 
 # successivamento digitando il nome dell'immagine ho visualizzato tutte le sue informazioni (tipo di file, risoluzione, informazioni sui sistemi di riferimento etc)
@@ -37,10 +37,10 @@ p224r63_2011
 plot(p224r63_2011)
 # ho fatto il primo plot con sette bande con dei dati satellitari!!
 
-#stabiliamo adesso un differente range di colori sa nero a grigio chiaro, inserendo una C davanti alla parentesi ad indicare una serie di elementi (colori). il 100 indica il  numero di livelli
+#stabiliamo adesso un differente range di colori da nero a grigio chiaro, inserendo una C davanti alla parentesi ad indicare una serie di elementi (colori). il 100 indica il  numero di livelli
 cl <- colorRampPalette(c('black','grey','light grey'))(100)
 
-# plotto il colore con il primo argomento che è l'immagine mentre il secondo argimento sara il colore che daremo ad ogni singola banda
+# plotto il colore con il primo argomento che è l'immagine mentre il secondo argomento sara il colore che daremo ad ogni singola banda
 plot(p224r63_2011, col=cl)
 
 #vediamo che nell'infrarosso c'è molta riflettanza. 
@@ -56,7 +56,7 @@ plot(p224r63_2011, col=cl)
 
 
 # adesso passeremo dalla terra in 3D alla terra in 2D portando la terra dall'ellissoide al piano attraverso la suddivisione in fusi----mercator project UTM, INOLTRE POSSIAMO PASSARE DA UN SISTEMA DI RIFERIMENTO ALL'ALTRO PARTENDO DA UN SISTEMA DI RIFERIMENTO GIA DEFINITO.
-# ADESSO VEDREMO COME LAVORARE SULLE SINGOLA BANDE DI IMMAGINI DA SATELLITE E COME PLOTTARE PIU BANDE INSIEME. 
+# ADESSO VEDREMO COME LAVORARE SULLE SINGOLE BANDE DI IMMAGINI DA SATELLITE E COME PLOTTARE PIU BANDE INSIEME. 
 
 
 
