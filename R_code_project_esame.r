@@ -9,13 +9,15 @@
 #L'immagine del 1993 è stata catturata leggermente dopo il picco dei livelli dell'acqua in questa parte del fiume Mississippi.
 #Questa immagine a falsi colori è stata creata combinando lunghezze d'onda infrarosse,
 #infrarosse vicine all'infrarosso e verdi di luce osservate dallo strumento Thematic Mapper (TM) a bordo del satellite Landsat
-#L'acqua appare blu scuro, la vegetazione sana è verde, i campi nudi e il terreno appena esposto sono rosa e il cemento è grigio. 
+#L'acqua appare blu scuro, la vegetazione sana è verde, i campi nudi e il terreno appena esposto sono rosa. 
 #Inoltre, il diffuso cambiamento della copertura del suolo lungo fiumi e torrenti ha modificato drasticamente i sistemi naturali di controllo
+
+#NASA images created by Jesse Allen, Earth Observatory, using data provided courtesy of the Landsat Project Science Office.
 #Sensori:
 #Landsat 5 - TM
 
-# 14 agosto 1991
-# 19 agosto 1993
+# figure 1: 14 agosto 1991
+# figure 2: 19 agosto 1993
 
 
 ##Utilizzo gli algoritmi di classificazione delle immagini e faccio un analisi multitemporale della variazione della copertura del suolo, successivamente calcolo alcuni parametri.
@@ -32,7 +34,7 @@ library(RStoolbox)#per la classificazione dell immagini
 
 install.packages("ggplot2")
 library(ggplot2) #per effettuare dei plottaggi dettagliati
-#installo anche gridExtra per effettuare piu plottaggi insieme c
+#installo anche gridExtra per effettuare piu plottaggi insieme 
 
 install.packages("gridExtra")
 library(gridExtra)
@@ -81,21 +83,32 @@ grid.arrange(p1, p2, nrow=2)
 
 #facciamo l'unsupervised classification (non viene supervisionata da noi) 
 # classificazione non supervisionata
-st1 <- unsuperClass(stlouis91, nClasses=4) #immmagine e numero di classi
+st1 <- unsuperClass(stlouis91, nSamples=10000, nClasses=3) 
+
+#immmagine e numero di classi, utilizza 10000 pixel random e fa una classificazione in 3 classi
+
 st1 #due valori
-#abbiamo d1c che è il modello e la mappa che abbiamo creato e lo plotiamo
+# st1  è il modello e poi ho la mappa che ho creato che lego con il dollaro ottenendo la mappa
 plot(st1$map)
-#classe 1 agricola
-#classe due non agricola
+#Vedo una classe in bianco data dall'acqua,
+#grazie ai diversi valri di riflettanza osserviamo diversi colori  che danno diverse classi 
 
+#classe  agricola e vegetazione sana, non lavorata e senza poderi
+#classe 1 suolo esposto in rosa
+#classe 2 vegetazione sana
+#classe 3 acqua fiume
 
+#classifico la seconda immagine del 1993
+st2 <- unsuperClass(stlouis93, nSamples=10000, nClasses=3) 
 
+st2
+plot(st2$map)
 
+#classe 1 suolo esposto in rosa
+#classe 2 vegetazione sana
+#classe 3 acqua fiume
 
-
-
-
-
+#mettendo a confronto le due mappe posso calcolare lincremento di acqua che ha avuto il fiume Missisipi ed i suoi affluenti
 
 
 
