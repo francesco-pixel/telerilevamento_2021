@@ -37,16 +37,18 @@ library(ggplot2) #per effettuare dei plottaggi dettagliati
 install.packages("gridExtra")
 library(gridExtra)
 
-
+#metto a confronto due immagini gia processate che hanno perso il proprio sistema di riferimento originale e faccio un analisi multitemporale
 
 #carico la prima immagine con la funzione brick
 stlouis91 <- brick("stlouis91.jpg") 
 
-
+stlouis91
+#vediamo tutte le informazioni del dato tra cui crs che è il sistema di riferimento ed è uguale ad NA perche non ha più sistema di riferimento perche è stata scaricata dall'earth obs.
 
 plotRGB(stlouis91, r=1, g=2, b=3, stretch="Lin")
 #all'interno di ggplot ci sono funzioni potenti per plottare immagini----> funzioni con gg
 #funzione ggRGB, essa ha bisogno dell' immagine , delle componenti RGB e stretch.
+#faccio un ggplot
 ggRGB(stlouis91, r=1, g=2, b=3, stretch="Lin") #otteniamo un plot con le coordinate spaziali (plot migliore)
 
 
@@ -77,10 +79,10 @@ grid.arrange(p1, p2, nrow=2)
 
 
 
-#facciamo l'unsupervised(non viene supervisionata da noi inizialmente) classification 
+#facciamo l'unsupervised classification (non viene supervisionata da noi) 
 # classificazione non supervisionata
-d1c <- unsuperClass(stlouis91, nClasses=2) #immmagine e numero di classi
-d1c #due valori
+st1 <- unsuperClass(stlouis91, nClasses=2) #immmagine e numero di classi
+st1c #due valori
 #abbiamo d1c che è il modello e la mappa che abbiamo creato e lo plotiamo
 plot(d1c$map)
 #classe 1 agricola
