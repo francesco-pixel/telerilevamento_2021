@@ -87,7 +87,7 @@ st1 <- unsuperClass(stlouis91, nSamples=10000, nClasses=3)
 
 #immmagine e numero di classi, utilizza 10000 pixel random e fa una classificazione in 3 classi
 
-st1 #due valori
+st1 #tre valori
 # st1  è il modello e poi ho la mappa che ho creato che lego con il dollaro ottenendo la mappa
 plot(st1$map)
 #Vedo una classe in bianco data dall'acqua,
@@ -108,7 +108,73 @@ plot(st2$map)
 #classe 2 vegetazione sana
 #classe 3 acqua fiume
 
-#mettendo a confronto le due mappe posso calcolare lincremento di acqua che ha avuto il fiume Missisipi ed i suoi affluenti
+#mettendo a confronto le due mappe posso calcolare l'incremento di acqua che ha avuto il fiume Missisipi, il Missouri ed il illinois river.
+#calcolo la frequenza dei pixel di una certa classe chiedendomi quanti pixel ho delle corrisettive 3 classi e come sono state modificate dal 1991 al 1993 a causa delle intense piogge
+
+#utilizzo la funzione freq per calcolare la frequeza dei pixel della mappa generata
+freq(st1$map)
+#value   count
+#[1,]     1 7357344 pixel
+#[2,]     2 5193331 pixel
+#[3,]     3  409325 pixel
+
+#calcolo la proporzione fra le tre classi di pixel nel 1991:
+
+somma1 <- 7357344 + 5193331 + 409325
+somma1
+
+#faccio la proporzione facendo fre/somma valori (in %)
+prop1 <- freq(st1$map) / somma1
+prop1 #1991
+#prop. 56,769630 suolo esposto
+#prop. 40,071998 vegetazione sana
+#prop. 3,158372 acqua river
+
+
+ #utilizzo la funzione freq per calcolare la frequeza dei pixel della mappa generata
+freq(st2$map)
+#     value   count
+#[1,]     1 7906266
+#[2,]     2 3606231
+#[3,]     3 1447503
+
+
+
+
+#calcolo la proporzione per l'anno 1993
+somma2 <- 7906266 + 3606231 + 1447503
+somma2
+
+#faccio la proporzione facendo freq/somma valori (in %)
+prop2 <- freq(st2$map) / somma2
+prop2 #1993
+
+            value     count
+#prop1. 61,00514 suolo esposto
+#prop2. 27,82586 vegetazione sana
+#prop3. 11,16900 acqua river
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
