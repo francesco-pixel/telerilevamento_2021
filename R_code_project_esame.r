@@ -77,14 +77,14 @@ grid.arrange(p1, p2, nrow=2)
 #immagini disposte su due righe
 
 
-
+#Faccio una classificazione  
 
 #facciamo l'unsupervised classification (non viene supervisionata da noi) 
 # classificazione non supervisionata
-st1 <- unsuperClass(stlouis91, nClasses=2) #immmagine e numero di classi
-st1c #due valori
+st1 <- unsuperClass(stlouis91, nClasses=4) #immmagine e numero di classi
+st1 #due valori
 #abbiamo d1c che è il modello e la mappa che abbiamo creato e lo plotiamo
-plot(d1c$map)
+plot(st1$map)
 #classe 1 agricola
 #classe due non agricola
 
