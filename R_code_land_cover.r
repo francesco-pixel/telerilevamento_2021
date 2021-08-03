@@ -4,16 +4,19 @@
 # R code analisi multitemporale di variazione della land cover
 setwd("C:/lab/")
 
-
+install.packages("raster")
 library(raster)
 install.packages("RStoolbox") 
 library(RStoolbox)#per la classificazione
 
 install.packages("ggplot2")
 library(ggplot2) 
+setwd("C:/lab/")
 
 #carichiamo la prima immagine
 defor1 <- brick("defor1.jpg") 
+
+
 
 plotRGB(defor1, r=1, g=2, b=3, stretch="Lin")
 #all'interno di ggplot ci sono funzioni potenti per plottare immagini----> funzioni con gg
@@ -31,7 +34,7 @@ plotRGB(defor1, r=1, g=2, b=3, stretch="Lin")
 plotRGB(defor2, r=1, g=2, b=3, stretch="Lin")
 
 
-#per mettere le immagini accanto o incolonnate non usiamo parmfrow come per plotRGB ma con ggplot si fa  con la funzione grid
+#per mettere le immagini di ggRGB insieme e accanto o incolonnate non usiamo parmfrow come per plotRGB ma con ggplot si fa  con la funzione grid
 #per farlo installiamo gridExtra
 
 
@@ -48,13 +51,14 @@ grid.arrange(p1, p2, nrow=2)
 #utilizzzeremo ggplot per vedere la diminuzione nella foresta amazzonica e la plotteremo visualizzando il cambiamento
 
 
-DAY 7/05
+#DAY 7/05
 #differenza tra vegetazione e uso del suolo (copertura). la vegetazione è piu particolareggiata con le singole specie dominanti. 
 #per la vegetaazione abbiamo bisogno di sensori iperspettrali e quindi molte bande per distinguere le specie.
 
 #facciamo l'unsupervised(non viene supervisionata da noi inizialmente) classification 
 # classificazione non supervisionata
-d1c <- unsuperClass(defor1, nClasses=2) #immmagine e numero di classi
+d1c <- unsuperClass(defor1, nClasses=2) 
+#immmagine e numero di classi
 d1c #due valori
 #abbiamo d1c che è il modello e la mappa che abbiamo creato e lo plotiamo
 plot(d1c$map)
