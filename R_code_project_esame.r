@@ -14,7 +14,7 @@
 
 #NASA images created by Jesse Allen, Earth Observatory, using data provided courtesy of the Landsat Project Science Office.
 #Sensori:
-#Landsat 5 - TM
+#Landsat 5 - TM con una risoluzione di 30m
 
 # figure 1: 14 agosto 1991
 # figure 2: 19 agosto 1993
@@ -46,6 +46,10 @@ stlouis91 <- brick("stlouis91.jpg")
 
 stlouis91
 #vediamo tutte le informazioni del dato tra cui crs che è il sistema di riferimento ed è uguale ad NA perche non ha più sistema di riferimento perche è stata scaricata dall'earth obs.
+plot(stlouis91) #visualizziamo le 3 bande di riflettanza impacchettate nella nostra immagine 1991
+
+
+
 
 plotRGB(stlouis91, r=1, g=2, b=3, stretch="Lin")
 #all'interno di ggplot ci sono funzioni potenti per plottare immagini----> funzioni con gg
@@ -57,6 +61,14 @@ ggRGB(stlouis91, r=1, g=2, b=3, stretch="Lin") #otteniamo un plot con le coordin
 #carico adesso la seconda immagine ed effettuo le stesse operazioni.
 
 stlouis93 <- brick("stlouis93.jpg")
+stlouis93 #info immagine
+plot(stlouis93) #visualizziamo le 3 bande di riflettanza impacchettate nella nostra immagine 1993
+
+#visualizzo l'immagine cambiando i colori sui valori delle riflettanze della mia immagine, utilizzando una mia personale legenda
+cl <- colorRampPalette(c('blue','orange', 'lightblue'))(200)
+plot(stlouis91, col=cl)
+plot(stlouis93, col=cl)
+
 plotRGB(stlouis93, r=1, g=2, b=3, stretch="Lin")
 ggRGB(stlouis93, r=1, g=2, b=3, stretch="Lin")
 
@@ -64,6 +76,7 @@ ggRGB(stlouis93, r=1, g=2, b=3, stretch="Lin")
 par(mfrow=c(1,2))
 plotRGB(stlouis91, r=1, g=2, b=3, stretch="Lin")
 plotRGB(stlouis93, r=1, g=2, b=3, stretch="Lin")
+
 
 
 
@@ -91,12 +104,12 @@ st1 #tre valori
 # st1  è il modello e poi ho la mappa che ho creato che lego con il dollaro ottenendo la mappa
 plot(st1$map)
 #Vedo una classe in bianco data dall'acqua,
-#grazie ai diversi valri di riflettanza osserviamo diversi colori  che danno diverse classi 
+#grazie ai diversi valri di riflettanza osserviamo diversi colori  che danno diverse classi  per ogni firma spettrale
 
-#classe  agricola e vegetazione sana, non lavorata e senza poderi
+#classe  agricola e vegetazione sana, non lavorata e senza poderi in funzione della riflettanza e cioe quanta luce viene restituita da un certo corpo sulla terra che vieme colpita dalla luce filtrata anche dall'atmosfera
 #classe 1 suolo esposto in rosa
-#classe 2 vegetazione sana
-#classe 3 acqua fiume
+#classe 2 vegetazione sana. l'infrarosso vicino riflette piu di tutti
+#classe 3 acqua fiume 
 
 #classifico la seconda immagine del 1993
 st2 <- unsuperClass(stlouis93, nSamples=10000, nClasses=3) 
