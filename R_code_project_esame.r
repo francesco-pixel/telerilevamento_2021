@@ -126,9 +126,9 @@ somma1
 #faccio la proporzione facendo fre/somma valori (in %)
 prop1 <- freq(st1$map) / somma1
 prop1 #1991
-#prop. 56,769630 suolo esposto
-#prop. 40,071998 vegetazione sana
-#prop. 3,158372 acqua river
+#prop. 56.769630 suolo esposto
+#prop. 40.071998 vegetazione sana
+#prop. 3.158372 acqua river
 
 
  #utilizzo la funzione freq per calcolare la frequeza dei pixel della mappa generata
@@ -150,31 +150,43 @@ prop2 <- freq(st2$map) / somma2
 prop2 #1993
 
             value     count
-#prop1. 61,00514 suolo esposto
-#prop2. 27,82586 vegetazione sana
-#prop3. 11,16900 acqua river
+#prop1. 61.00514 suolo esposto
+#prop2. 27.82586 vegetazione sana
+#prop3. 11.16900 acqua river
+
+#adesso genero un dataset contenente i fattori e cioe delle variabili categoriche: suolo nudo, vegetazione sana e acqua con i rispettivi valori in % del 1991 e del 1993
+
+#costruisco il mio dataframe
+
+
+cover <- c("suolo esposto", "vegetazione sana", "acqua")
+percent_1991 <- c(56.76, 40.07, 3.15)
+percent_1993 <- c(61.00, 27.82, 11.16)
+
+#con la funzione data.frame creo una tabella
+
+percent <- data.frame(cover, percent_1991, percent_1993)
+percent
+
+# cover percent_1991 percent_1993
+# 1 suolo esposto, vegetazione sana, acqua        56.76        61.00
+# 2 suolo esposto, vegetazione sana, acqua        40.07        27.82
+# 3 suolo esposto, vegetazione sana, acqua         3.15        11.16
+
+
+#con la funzione ggplot faccio due buon  grafici e li metto a confronto 
+
+g91 <- ggplot(percent, aes(x=cover, y=percent_1991, color=cover)) + geom_bar(stat="identity", fill="grey")
+
+g93 <- ggplot(percent, aes(x=cover, y=percent_1993, color=cover)) + geom_bar(stat="identity", fill="grey")
+#tra il 1991 e il 1993 notiamo un netto incremento di acqua 
+#metto i due grafici a confronto con la funzione grid.arrange
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+grid.arrange(g91, g93, nrow=2)
+#in questa zona della terra tra il 1991 e il 1993 notiamo un netto incremento di acqua con esondazioni da parte dei fiumi, vi è anche una diminuzione della vegetazione sana.
+#ho analizzato un cambiamento multitemporale nell'area del Missisipi data da eventi metereologici intensi.
 
 
 
