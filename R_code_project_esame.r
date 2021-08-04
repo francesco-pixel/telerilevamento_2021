@@ -1,5 +1,5 @@
 #R_code_project_exam.r
-#Analisi della land cover del Fiume del Missisipi
+#Analisi della land cover del Fiume Missisipi
 
 
 #R_code variazione della land cover nella parte superiore del bacino idrografico del Fiume Missisipi 
