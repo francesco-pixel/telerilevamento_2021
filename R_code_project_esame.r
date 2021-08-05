@@ -1,5 +1,5 @@
 #R_code_project_exam.r
-#Analisi della land cover del Fiume Missisipi
+#Analisi multitemporale della land cover del bacino idrografico del Missisipi
 
 
 #R_code variazione della land cover nella parte superiore del bacino idrografico del Fiume Missisipi 
@@ -18,7 +18,7 @@
 
 # figure 1: 14 agosto 1991
 # figure 2: 19 agosto 1993
-
+#dati rasterbrick, un raster  una matrice di dati
 
 ##Utilizzo gli algoritmi di classificazione delle immagini e faccio un analisi multitemporale della variazione della copertura del suolo, successivamente calcolo alcuni parametri.
 
@@ -46,7 +46,7 @@ stlouis91 <- brick("stlouis91.jpg")
 
 stlouis91
 #vediamo tutte le informazioni del dato tra cui crs che è il sistema di riferimento ed è uguale ad NA perche non ha più sistema di riferimento perche è stata scaricata dall'earth obs.
-plot(stlouis91) #visualizziamo le 3 bande di riflettanza impacchettate nella nostra immagine 1991
+plot(stlouis91) #visualizzo le 3 bande di riflettanza impacchettate nella nostra immagine 1991
 
 
 
@@ -65,9 +65,12 @@ stlouis93 #info immagine
 plot(stlouis93) #visualizziamo le 3 bande di riflettanza impacchettate nella nostra immagine 1993
 
 #visualizzo l'immagine cambiando i colori sui valori delle riflettanze della mia immagine, utilizzando una mia personale legenda
-cl <- colorRampPalette(c('blue','orange', 'lightblue'))(200)
+cl <- colorRampPalette(c('black','grey','orange'))(100)
+
+
 plot(stlouis91, col=cl)
 plot(stlouis93, col=cl)
+#in queste tre bande ho i valori piu bassi di riflettanza nel nero ed i piu alti nell'arancio
 
 plotRGB(stlouis93, r=1, g=2, b=3, stretch="Lin")
 ggRGB(stlouis93, r=1, g=2, b=3, stretch="Lin")
@@ -115,6 +118,7 @@ plot(st1$map)
 st2 <- unsuperClass(stlouis93, nSamples=10000, nClasses=3) 
 
 st2
+
 plot(st2$map)
 
 #classe 1 suolo esposto in rosa
@@ -135,6 +139,7 @@ freq(st1$map)
 
 somma1 <- 7357344 + 5193331 + 409325
 somma1
+
 
 #faccio la proporzione facendo fre/somma valori (in %)
 prop1 <- freq(st1$map) / somma1
