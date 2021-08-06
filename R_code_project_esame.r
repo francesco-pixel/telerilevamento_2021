@@ -206,6 +206,43 @@ grid.arrange(g91, g93, nrow=2)
 #in questa zona della terra tra il 1991 e il 1993 notiamo un netto incremento di acqua con esondazioni da parte dei fiumi, vi è anche una diminuzione della vegetazione sana.
 #ho analizzato un cambiamento multitemporale nell'area del Missisipi data da eventi metereologici intensi.
 
+##################### analisi multitemporale e confronto firme spettrali
+
+#tramite la funzione click ricavo informazioni relative alla riflettanza tra le due mappe e ne faccio un confronto
+stlouis91 <- brick("stlouis91.jpg")
 
 
+plotRGB(stlouis91, r=1, g=2, b=3, stretch="hist")
+#faccio uno stretch hist ottenendo un'immagine piu dettagliata 
+
+#creiamo lo spectral signatures di  stlouis91  e clicco 3 punti effettuando un tansetto perpendicolare  al Missisipi River e commento i valori ottenuti 
+click(stlouis91, id=T, xy=T, cell=T, type="p", pch=16, cex=4, col="orange")
+#la funzione click mi permette di effettuare dei click e ottenere risultati per ogni punto sulla riflettanza 
+#id= identificativo
+#xy=info spaziale
+#tipo= punto
+#pch= simbolo
+#     x      y    cell stlouis91.1 stlouis91.2 stlouis91.3
+#1 1589.5 1939.5 5977590         123         127          43
+#       x      y    cell stlouis91.1 stlouis91.2 stlouis91.3
+#1 1595.5 1882.5 6182796           0          22          36
+#       x      y    cell stlouis91.1 stlouis91.2 stlouis91.3
+#1 1606.5 1791.5 6510407         123          97          38
+
+
+#ripeto l'operazione anche per l'immagine stlouis93
+stlouis93 <- brick("stlouis93.jpg")
+
+
+plotRGB(stlouis93, r=1, g=2, b=3, stretch="hist")
+#faccio uno stretch hist ottenendo un'immagine piu dettagliata 
+#creiamo lo spectral signatures di  stlouis91  e clicco 3 punti effettuando un tansetto perpendicolare  al Missisipi River ricoprendo lo stesso areale del precedente  
+
+click(stlouis93, id=T, xy=T, cell=T, type="p", pch=16, cex=4, col="orange")
+#   x      y    cell stlouis93.1 stlouis93.2 stlouis93.3
+#1 1566.5 1876.5 6204367           2          29          46
+#       x      y    cell stlouis93.1 stlouis93.2 stlouis93.3
+#1 1572.5 1791.5 6510373           2          17          46
+#       x      y    cell stlouis93.1 stlouis93.2 stlouis93.3
+#1 1589.5 1649.5 7021590           5          23          27
 
