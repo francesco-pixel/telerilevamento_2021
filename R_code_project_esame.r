@@ -6,7 +6,7 @@
 
 #Durante la prima metà del 1993, il Midwest statunitense ha subito piogge insolitamente forti. Gran parte degli Stati Uniti nella parte superiore del bacino
 #idrografico del fiume Mississippi ricevettero più di 1,5 volte le loro precipitazioni medie nei primi sei mesi dell'anno.
-#Questa coppia di immagini estratte dall'Earth Observatory  che andrò ad analizzare tramite softwere R mostra l'area intorno a St. Louis, Missouri, nell'agosto 1991 e nel 1993. 
+#Questa coppia di immagini estratte dall'Earth Observatory  che andrò ad analizzare tramite softwere R mostra l'area intorno a St. Louis,  nell'agosto 1991 e nel 1993. 
 #L'immagine del 1993 è stata catturata leggermente dopo il picco dei livelli dell'acqua in questa parte del fiume Mississippi.
 #Questa immagine a falsi colori è stata creata combinando lunghezze d'onda infrarosse,
 #infrarosso vicino e verdi di luce osservate dallo strumento Thematic Mapper (TM) a bordo del satellite Landsat 5 
@@ -77,7 +77,7 @@ plot(stlouis93, col=cl)
 plotRGB(stlouis93, r=1, g=2, b=3, stretch="Lin")
 ggRGB(stlouis93, r=1, g=2, b=3, stretch="Lin")
 
-#metto le immagine plotRGB accanto con la funzione parmfrow e le metto a confronto
+#metto le immagini plotRGB in una riga e due colonne  con la funzione parmfrow e le metto a confronto
 par(mfrow=c(1,2))
 plotRGB(stlouis91, r=1, g=2, b=3, stretch="Lin")
 plotRGB(stlouis93, r=1, g=2, b=3, stretch="Lin")
@@ -113,7 +113,7 @@ plot(st1$map)
 #Vedo una classe in giallo data dall'acqua, una in verde data dalla vegetazione sana e una in bianco data dalla copertura nuda
 #grazie ai diversi valori di riflettanza osserviamo diversi colori  che danno diverse classi  per ogni firma spettrale
 
-#classe  in funzione della riflettanza e cioe quanta luce viene restituita da un certo corpo sulla terra che viene colpita dalla luce filtrata anche dall'atmosfera
+#classe  in funzione della riflettanza e cioe in funzione di quanta luce viene restituita da un certo corpo sulla terra restituendo un valore.La luce filtrata anche dall'atmosfera
 #classe 1 suolo esposto in rosa
 #classe 2 vegetazione sana. l'infrarosso vicino riflette piu di tutti
 #classe 3 acqua fiume riflette poco
@@ -153,7 +153,7 @@ prop1 #1991
 #prop. 3.158372 acqua river
 
 
- #utilizzo la funzione freq per calcolare la frequeza dei pixel della mappa generata
+ #utilizzo la funzione freq per calcolare la frequeza dei pixel della seconda mappa generata
 freq(st2$map)
 #     value   count
 #[1,]     1 7906266
@@ -196,11 +196,12 @@ percent
 # 3 suolo esposto, vegetazione sana, acqua         3.15        11.16
 
 
-#con la funzione ggplot faccio due buon  grafici e li metto a confronto 
+#con la funzione ggplot faccio due buoni grafici e li metto a confronto 
 
 g91 <- ggplot(percent, aes(x=cover, y=percent_1991, color=cover)) + geom_bar(stat="identity", fill="grey")
 
 g93 <- ggplot(percent, aes(x=cover, y=percent_1993, color=cover)) + geom_bar(stat="identity", fill="grey")
+#geometria a barre, dati originati= identity, color= quali oggetti discriminare e fill: di che colore voglio le barre all'interno
 #tra il 1991 e il 1993 notiamo un netto incremento di acqua 
 #metto i due grafici a confronto con la funzione grid.arrange
 
@@ -210,9 +211,9 @@ grid.arrange(g91, g93, nrow=2)
 #in questa zona della terra tra il 1991 e il 1993 notiamo un netto incremento di acqua con esondazioni da parte dei fiumi, vi è anche una diminuzione della vegetazione sana.
 #ho analizzato un cambiamento multitemporale nell'area del Missisipi data da eventi metereologici intensi.
 
-##################### analisi multitemporale e confronto firme spettrali
+##################### analisi multitemporale e confronto e firme spettrali
 
-#tramite la funzione click ricavo informazioni relative alla riflettanza tra le due mappe e ne faccio un confronto
+#tramite la funzione click ricavo informazioni relative alla riflettanza in una determinata area tra le due mappe e ne faccio un confronto
 stlouis91 <- brick("stlouis91.jpg")
 
 
@@ -226,6 +227,7 @@ click(stlouis91, id=T, xy=T, cell=T, type="p", pch=16, cex=4, col="orange")
 #xy=info spaziale
 #tipo= punto
 #pch= simbolo
+#valori di riflettanza per le corrispettive 3 bande:
 #     x      y    cell stlouis91.1 stlouis91.2 stlouis91.3
 #1 1589.5 1939.5 5977590         123         127          43
 #       x      y    cell stlouis91.1 stlouis91.2 stlouis91.3
@@ -240,9 +242,10 @@ stlouis93 <- brick("stlouis93.jpg")
 
 plotRGB(stlouis93, r=1, g=2, b=3, stretch="hist")
 #faccio uno stretch hist ottenendo un'immagine piu dettagliata 
-#creiamo lo spectral signatures di  stlouis91  e clicco 3 punti effettuando un tansetto perpendicolare  al Missisipi River ricoprendo lo stesso areale del precedente  
+#creiamo lo spectral signatures di  stlouis93  e clicco 3 punti effettuando un tansetto perpendicolare  al Missisipi River ricoprendo lo stesso areale del precedente  
 
 click(stlouis93, id=T, xy=T, cell=T, type="p", pch=16, cex=4, col="orange")
+#valori di riflettanza per le corrispettive 3 bande:
 #   x      y    cell stlouis93.1 stlouis93.2 stlouis93.3
 #1 1566.5 1876.5 6204367           2          29          46
 #       x      y    cell stlouis93.1 stlouis93.2 stlouis93.3
@@ -264,7 +267,7 @@ tabellaspectral <- data.frame(band, tempo1p1, tempo1p2, tempo1p3, tempo2p1, temp
 
 
 ggplot(tabellaspectral, aes(x=band)) +
-geom_line(aes(y=tempo1p1), color="red", inetype="dotted") +
+geom_line(aes(y=tempo1p1), color="red", linetype="dotted") +
 geom_line(aes(y=tempo1p2), color="red", linetype="dotted") +
 geom_line(aes(y=tempo1p3), color="red", linetype="dotted") +
 geom_line(aes(y=tempo2p1), color="blue", linetype="dotted") +
