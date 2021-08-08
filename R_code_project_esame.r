@@ -42,33 +42,43 @@ library(gridExtra)
 
 #metto a confronto due immagini gia processate che hanno perso il proprio sistema di riferimento originale e faccio un' analisi multitemporale
 
-#carico la prima immagine con la funzione brick
-stlouis91 <- brick("stlouis91.jpg") 
+#carico la prima immagine con la funzione brick, Attraverso la funzione brick ho importato l'intera immagine!
+
+stlouis91 <- brick("stlouis91.jpg")  
+
+
 
 stlouis91
 #è un rasterbrick e cioè un raster multistrato.
 #vediamo tutte le informazioni del dato tra cui crs che è il sistema di riferimento ed è uguale ad NA perche non ha più un sistema di riferimento in quanto è stata scaricata dall'earth obs e gia preprocessata.
-plot(stlouis91) #visualizzo le 3 bande di riflettanza impacchettate nella nostra immagine 1991
-
+#pdf("1.pdf")
+plot(stlouis91) #ho fatto il primo plot e visualizzo le 3 bande di riflettanza impacchettate nella nostra immagine 1991
+#dev.off()
 
 
 #plotto il mio dato in RGB per visualizzarlo a colori naturali
+#pdf("2.pdf")
 plotRGB(stlouis91, r=1, g=2, b=3, stretch="Lin")
+#dev.off()
 #all'interno di ggplot ci sono funzioni potenti per plottare immagini----> funzioni con gg
 #funzione ggRGB, essa ha bisogno dell' immagine , delle componenti RGB e stretch.
 #faccio un ggplot
+#pdf("3.pdf")
 ggRGB(stlouis91, r=1, g=2, b=3, stretch="Lin") #otteniamo un plot con le coordinate spaziali con uno stretch lineare evitando lomschiacciamento verso un colore (plot migliore)
-
+#dev.off()
 
 #carico adesso la seconda immagine ed effettuo le stesse operazioni.
 
 stlouis93 <- brick("stlouis93.jpg")
 stlouis93 #info immagine
+
+#pdf("3.pdf")
 plot(stlouis93) #visualizziamo le 3 bande di riflettanza impacchettate nella nostra immagine 1993
+#dev.off()
 
 #visualizzo l'immagine cambiando i colori sui valori delle riflettanze della mia immagine, utilizzando una mia personale legenda.
 cl <- colorRampPalette(c('black','grey','orange'))(100)
-
+#inserisco una C davanti alla parentesi ad indicare una serie di elementi (colori). il 100 indica il  numero di livelli.
 
 plot(stlouis91, col=cl)
 plot(stlouis93, col=cl)
@@ -83,48 +93,55 @@ plotRGB(stlouis91, r=1, g=2, b=3, stretch="Lin")
 plotRGB(stlouis93, r=1, g=2, b=3, stretch="Lin")
 
 #Potrei effettuare anche uno stretch hist che mi farà vedere ancor meglio le differenze in termini di riflettanza e quindi di colore
+#pdf("4.pdf")
 par(mfrow=c(1,2))
 plotRGB(stlouis91, r=1, g=2, b=3, stretch="hist")
 plotRGB(stlouis93, r=1, g=2, b=3, stretch="hist")
+#dev.off()
 
 
 
 
 
-
-#usiamo adesso la funzione grid.arrange che mette insieme vari pezzi dentro il grafico
+# adesso uso la funzione grid.arrange che mette insieme vari pezzi dentro il grafico riguardante il plot mediante ggRGB
+#pdf("5.pdf")
 p1 <- ggRGB(stlouis91, r=1, g=2, b=3, stretch="Lin")
 p2 <- ggRGB(stlouis93, r=1, g=2, b=3, stretch="Lin")
 grid.arrange(p1, p2, nrow=2)
+#dev.off()
 #immagini disposte su due righe
 
 
 #Faccio una classificazione  in funzione della somiglianza massima di ogni pixel ed alla distanza 
 
 #facciamo l'unsupervised classification (non viene supervisionata da noi) 
-# classificazione non supervisionata
+# classificazione non supervisionata, la associo ad un ogetto st1
 st1 <- unsuperClass(stlouis91, nSamples=10000, nClasses=3) 
 
 #immmagine e numero di classi, utilizza 10000 pixel random e fa una classificazione in 3 classi
 
 st1 #tre valori
 # st1  è il modello e poi ho la mappa che ho creato che lego con il dollaro ottenendo la mappa
+
+#pdf("6.pdf")
 plot(st1$map)
+#dev.off()
 #Vedo una classe in giallo data dall'acqua, una in verde data dalla vegetazione sana e una in bianco data dalla copertura nuda
 #grazie ai diversi valori di riflettanza osserviamo diversi colori  che danno diverse classi  per ogni firma spettrale
 
 #classe  in funzione della riflettanza e cioe in funzione di quanta luce viene restituita da un certo corpo sulla terra restituendo un valore.La luce filtrata anche dall'atmosfera
 #classe 1 suolo esposto in rosa
 #classe 2 vegetazione sana. l'infrarosso vicino riflette piu di tutti
-#classe 3 acqua fiume riflette poco
+#classe 3 acqua del fiume riflette poco
 
 #classifico la seconda immagine del 1993
 st2 <- unsuperClass(stlouis93, nSamples=10000, nClasses=3) 
 
 st2
 
+#pdf("7.pdf")
 plot(st2$map)
-
+#dev.off()
 #classe 1 suolo esposto in rosa
 #classe 2 vegetazione sana
 #classe 3 acqua fiume
@@ -206,8 +223,9 @@ g93 <- ggplot(percent, aes(x=cover, y=percent_1993, color=cover)) + geom_bar(sta
 #metto i due grafici a confronto con la funzione grid.arrange
 
 
-
+#pdf("8.pdf")
 grid.arrange(g91, g93, nrow=2)
+#dev.off()
 #in questa zona della terra tra il 1991 e il 1993 notiamo un netto incremento di acqua con esondazioni da parte dei fiumi, vi è anche una diminuzione della vegetazione sana.
 #ho analizzato un cambiamento multitemporale nell'area del Missisipi data da eventi metereologici intensi.
 
@@ -245,7 +263,7 @@ plotRGB(stlouis93, r=1, g=2, b=3, stretch="hist")
 #creiamo lo spectral signatures di  stlouis93  e clicco 3 punti effettuando un tansetto perpendicolare  al Missisipi River ricoprendo lo stesso areale del precedente  
 
 click(stlouis93, id=T, xy=T, cell=T, type="p", pch=16, cex=4, col="orange")
-#valori di riflettanza per le corrispettive 3 bande:
+#valori di riflettanza per le corrispettive 3 bande lungo il transetto tracciato:
 #   x      y    cell stlouis93.1 stlouis93.2 stlouis93.3
 #1 1566.5 1876.5 6204367           2          29          46
 #       x      y    cell stlouis93.1 stlouis93.2 stlouis93.3
@@ -265,7 +283,7 @@ tempo2p3 <- c(5,23,27)
 tabellaspectral <- data.frame(band, tempo1p1, tempo1p2, tempo1p3, tempo2p1, tempo2p2, tempo2p3)
 #con ggplot plotto le tre curve temporali nel grafico 
 
-
+#pdf("9.pdf")
 ggplot(tabellaspectral, aes(x=band)) +
 geom_line(aes(y=tempo1p1), color="red", linetype="dotted") +
 geom_line(aes(y=tempo1p2), color="red", linetype="dotted") +
@@ -274,6 +292,7 @@ geom_line(aes(y=tempo2p1), color="blue", linetype="dotted") +
 geom_line(aes(y=tempo2p2), color="blue", linetype="dotted") +
 geom_line(aes(y=tempo2p3), color="blue", linetype="dotted") +
 labs(x="band", y="reflectance")
+#dev.off()
 #linetype per differenziare le diverse linee ottenute 
 
 
