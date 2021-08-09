@@ -111,12 +111,12 @@ grid.arrange(p1, p2, nrow=2)
 #dev.off()
 #immagini disposte su due righe
 
-
+st1 <- unsuperClass(stlouis91, nSamples=10000, nClasses=3) 
 #Faccio una classificazione  in funzione della somiglianza massima di ogni pixel ed alla distanza 
 
 #facciamo l'unsupervised classification (non viene supervisionata da noi) 
 # classificazione non supervisionata, la associo ad un ogetto st1
-st1 <- unsuperClass(stlouis91, nSamples=10000, nClasses=3) 
+
 
 #immmagine e numero di classi, utilizza 10000 pixel random e fa una classificazione in 3 classi
 
@@ -141,6 +141,7 @@ st2
 
 #pdf("7.pdf")
 plot(st2$map)
+
 #dev.off()
 #classe 1 suolo esposto in rosa
 #classe 2 vegetazione sana
@@ -229,7 +230,7 @@ grid.arrange(g91, g93, nrow=2)
 #in questa zona della terra tra il 1991 e il 1993 notiamo un netto incremento di acqua con esondazioni da parte dei fiumi, vi è anche una diminuzione della vegetazione sana.
 #ho analizzato un cambiamento multitemporale nell'area del Missisipi data da eventi metereologici intensi.
 
-##################### analisi multitemporale e confronto e firme spettrali
+##################### analisi multitemporale, confronto e firme spettrali
 
 #tramite la funzione click ricavo informazioni relative alla riflettanza in una determinata area tra le due mappe e ne faccio un confronto
 stlouis91 <- brick("stlouis91.jpg")
@@ -298,7 +299,7 @@ labs(x="band", y="reflectance")
 
 #Posso osservare le curve in rosso riferite al 1991 dove si osserva un alto valore di riflettanza dato dalla vegetazione mentre una delle tre curve in rosso ha valori molto bassi
 #in quanto uno dei tre pixel rilevati coincide e riflette con bassi valori dovuti all'acqua all'interno del fiume Mississipi,
-#Per quanto riguarda invece l'anno 1993 tutti e tre le curve in blu riferite ai valori di riflettanza risultano essere bassi perche il fiume estendendo il suo areale
+#Per quanto riguarda invece l'anno 1993 tutti e tre le curve in blu riferite ai valori di riflettanza risultano essere basse perchè il fiume estendendo il suo areale
 #ha esondato l'intero transetto studiato e di conseguenza risultano valori di riflettanza bassi a causa della sua
 #espansione nel 1993 data dalle intense precipitazioni.
 
