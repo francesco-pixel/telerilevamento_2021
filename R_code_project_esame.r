@@ -1,7 +1,7 @@
 #R_code_project_exam.r
 
 #R_code variazione della land cover nella parte superiore del bacino idrografico del Fiume Missisippi 
-#Analisi multitemporale della land cover del bacino idrografico del Missisippi comrendende il Missisippi River, Illinois River ed il Missouri River.
+#Analisi multitemporale della land cover del bacino idrografico del Missisippi comprendende il Missisippi River, Illinois River ed il Missouri River.
 
 
 #Durante la prima metà del 1993, il Midwest statunitense ha subito piogge insolitamente forti. Gran parte degli Stati Uniti nella parte superiore del bacino
@@ -73,7 +73,7 @@ stlouis93 <- brick("stlouis93.jpg")
 stlouis93 #info immagine
 
 #pdf("3.pdf")
-plot(stlouis93) #visualizziamo le 3 bande di riflettanza impacchettate nella nostra immagine 1993
+plot(stlouis93) #visualizz0 le 3 bande di riflettanza impacchettate nella nostra immagine 1993
 #dev.off()
 
 #visualizzo l'immagine cambiando i colori sui valori delle riflettanze della mia immagine, utilizzando una mia personale legenda.
@@ -126,7 +126,7 @@ st1 #tre valori
 #pdf("6.pdf")
 plot(st1$map)
 #dev.off()
-#Vedo una classe in giallo data dall'acqua, una in verde data dalla vegetazione sana e una in bianco data dalla copertura nuda
+#Vedo una classe in verde data dall'acqua, una in bianco data dalla vegetazione sana e una in giallo data dalla copertura nuda
 #grazie ai diversi valori di riflettanza osserviamo diversi colori  che danno diverse classi  per ogni firma spettrale
 
 #classe  in funzione della riflettanza e cioe in funzione di quanta luce viene restituita da un certo corpo sulla terra restituendo un valore.La luce filtrata anche dall'atmosfera
@@ -143,7 +143,7 @@ st2
 plot(st2$map)
 
 #dev.off()
-#classe 1 suolo esposto in rosa
+#classe 1 suolo esposto .
 #classe 2 vegetazione sana
 #classe 3 acqua fiume
 
